@@ -1,5 +1,5 @@
 # Arona-Holding-Vinyls
-Inspired by [WuwaDpsMeter](https://github.com/MorphTheMoth/WuwaDpsMeter).
+Inspired by [KamalaHoldingVinyls](https://kamala-holding-vinyls.glitch.me/).
 
 Logo by [BlueArchive-Style Logo Generator](https://lab.nulla.top/ba-logo)
 
