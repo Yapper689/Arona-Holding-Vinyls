@@ -1,0 +1,148 @@
+---
+import arona from '../arona_update.png'
+import logo from '../logo.png'
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arona Holding Vinyls</title>
+    <style>
+        html, body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px;
+            text-align: center;
+            font-family: "Inter", sans-serif;
+            overflow: auto;
+			scrollbar-width: none;
+			-ms-overflow-style: none;
+        }
+        body::-webkit-scrollbar {
+			display: none;
+		}
+
+        #coverContainer {
+            position: relative;
+            width: 640px;
+            height: 360px;
+            margin: 60px auto 0;
+            overflow: hidden;
+        }
+
+        #albumCover {
+            position: absolute;
+            rotate: -35deg;
+            left: 50px;
+            top: 157px;
+            height: 300px;
+            width: 223px;
+            opacity: 1;
+            object-fit: cover;   
+        }
+
+        #frameImage {
+            position: absolute;
+            width: 640px;
+            height: 360px;
+            pointer-events: none;
+        }
+
+        #searchInput {
+            margin-right: 10px;
+            padding: 5px;
+            margin-top:20px;
+            font-family: "Inter", sans-serif;
+            border: 1px solid #000000;
+            border-radius: 5px;
+        }
+
+        button {
+            font-family: "Inter", sans-serif;
+            padding: 10px 20px;
+            font-weight:600;
+            border: none;
+            background-color: #128AFA;
+            color: #fff;
+            border-radius: 20px;
+        }
+
+        #txt {
+            margin-top: 60px; /* Adjust margin as needed */
+            margin-bottom: 100px; /* Adjust margin as needed */
+            font-weight: 600;
+            font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+        }
+
+        #txt a {
+            color: #128AFA; /* Set link color */
+            text-decoration: none; /* Remove underline */
+            transition: text-shadow 0.3s ease; /* Smooth transition for glow effect */
+        }
+
+        #txt a:hover {
+            text-shadow: 0 0 10px #128AFA; /* Add glowing effect on hover */
+        }
+    </style>
+</head>
+<body>
+    <img src={logo.src} width="50%">
+
+    <div>
+        <input type="text" id="searchInput" placeholder="Enter album name">
+        <button onclick="searchAlbum()">Search</button>
+    </div>
+    <div id="coverContainer">
+        <img id="albumCover" src="https://i.scdn.co/image/ab67616d0000b273fc21c589a9b17c1451f0d79c">
+        <img id="frameImage" src={arona.src}>
+    </div>
+
+    <div id="txt">
+        <p>Inspired by <a href="https://kamala-holding-vinyls.glitch.me/">KamalaHoldingVinyls</a></p>
+        <p>Logo by <a href="https://lab.nulla.top/ba-logo">BlueArchive-Style Logo Generator</a></p>
+    </div>
+
+    <script is:inline>
+        document.addEventListener('DOMContentLoaded', function() {
+            const frameImg = document.getElementById('frameImage');
+            frameImg.style.display = 'block';
+        });
+    
+        async function searchAlbum() {
+            const searchTerm = document.getElementById('searchInput').value;
+            const apiUrl = `https://itunes.apple.com/search?term=${encodeURIComponent(searchTerm)}&entity=album`;
+    
+            try {
+                const response = await fetch(apiUrl);
+                const data = await response.json();
+    
+                if (data.results && data.results.length > 0) {
+                    const album = data.results[0];
+                    const albumCoverUrl = album.artworkUrl100; // URL of the album cover image
+    
+                    displayAlbumCover(albumCoverUrl);
+                } else {
+                    alert('Album not found');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('An error occurred while searching for the album');
+            }
+        }
+    
+        function displayAlbumCover(imageUrl) {
+            const albumCoverImg = document.getElementById('albumCover');
+    
+            albumCoverImg.onload = function() {
+                albumCoverImg.style.display = 'block';
+            };
+    
+            albumCoverImg.src = imageUrl;
+        }
+    </script>
+
+
+</body>
+</html>
