@@ -1,12 +1,10 @@
----
-import arona from '../arona_update.png'
-import logo from '../logo.png'
----
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Have Arona from Blue Archive hold your favourite albums' covers and vinyls.">
+    <meta name="keywords" content="Arona Holding Vinyls, blue archive, blue arvhive arona, albums cover">
     <title>Arona Holding Vinyls</title>
     <style>
         html, body {
@@ -28,7 +26,7 @@ import logo from '../logo.png'
             position: relative;
             width: 640px;
             height: 360px;
-            margin: 60px auto 0;
+            margin: 40px auto 0;
             overflow: hidden;
         }
 
@@ -70,8 +68,8 @@ import logo from '../logo.png'
         }
 
         #txt {
-            margin-top: 60px;
-            margin-bottom: 100px;
+            margin-top: 30px;
+            margin-bottom: 50px;
             font-weight: 600;
             font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
         }
@@ -88,7 +86,7 @@ import logo from '../logo.png'
     </style>
 </head>
 <body>
-    <img src={logo.src} width="50%">
+    <img src="logo.png" width="50%">
 
     <div>
         <input type="text" id="searchInput" placeholder="Enter album name">
@@ -96,15 +94,13 @@ import logo from '../logo.png'
     </div>
     <div id="coverContainer">
         <img id="albumCover" src="https://i.scdn.co/image/ab67616d0000b273fc21c589a9b17c1451f0d79c">
-        <img id="frameImage" src={arona.src}>
+        <img id="frameImage" src="arona_update.png">
     </div>
-
     <div id="txt">
         <p>Inspired by <a href="https://kamala-holding-vinyls.glitch.me/">KamalaHoldingVinyls</a></p>
         <p>Logo by <a href="https://lab.nulla.top/ba-logo">BlueArchive-Style Logo Generator</a></p>
     </div>
-
-    <script is:inline>
+    <script>
         document.addEventListener('DOMContentLoaded', function() {
             const frameImg = document.getElementById('frameImage');
             frameImg.style.display = 'block';
@@ -142,7 +138,5 @@ import logo from '../logo.png'
             albumCoverImg.src = imageUrl;
         }
     </script>
-
-
 </body>
 </html>
